@@ -4,7 +4,7 @@ from torch.nn import functional as F
 from collections import OrderedDict
 import sys
 from einops import rearrange, repeat
-from .cst import ContextSharingTransformer
+from .cst import cst
 from .text_encoder.text_encoder import TextEncoder, FeatureResizer
 
 def generate_coord(batch, height, width):
@@ -104,7 +104,7 @@ class FuseDecoding(nn.Module):
         super(FuseDecoding, self).__init__()
         self.h2l = nn.MultiheadAttention(c4_dims, 8, dropout=0.1)
         hidden_size = c4_dims
-        self.cst = ContextSharingTransformer(256, 256, 0.1)
+        self.cst = cst(256, 256, 0.1)
         pass
         
     def forward(self, low, high, lang_feat, lang_mask):
