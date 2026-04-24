@@ -178,11 +178,6 @@ class VisionLanguageFusionModule(nn.Module):
 #######################################################################
         self.multihead_attn_image10 = nn.MultiheadAttention(d_model, nhead, dropout=dropout)
         self.multihead_attn_image11 = nn.MultiheadAttention(d_model, nhead, dropout=dropout)
-        # self.fuse_lang_1 =FeatureResizer(
-        #     input_feat_size=d_model*2,
-        #     output_feat_size=d_model,
-        #     dropout=0.1,
-        # )
         self.row = nn.MultiheadAttention(d_model, nhead, dropout=dropout)
         self.fuse_row = FeatureResizer(
             input_feat_size=d_model*2,
@@ -192,11 +187,6 @@ class VisionLanguageFusionModule(nn.Module):
 #######################################################################
         self.multihead_attn_image20 = nn.MultiheadAttention(d_model, nhead, dropout=dropout)
         self.multihead_attn_image21 = nn.MultiheadAttention(d_model, nhead, dropout=dropout)
-        # self.fuse_lang_2 = FeatureResizer(
-        #     input_feat_size=d_model*2,
-        #     output_feat_size=d_model,
-        #     dropout=0.1,
-        # )
         self.col = nn.MultiheadAttention(d_model, nhead, dropout=dropout)
         self.fuse_col = FeatureResizer(
             input_feat_size=d_model*2,
