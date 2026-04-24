@@ -8,8 +8,7 @@ from .cst import ContextSharingTransformer
 from .text_encoder.text_encoder import TextEncoder, FeatureResizer
 
 def generate_coord(batch, height, width):
-    # coord = Variable(torch.zeros(batch,8,height,width).cuda())
-    #print(batch, height, width)
+
     xv, yv = torch.meshgrid([torch.arange(0,height), torch.arange(0,width)])
     #print(batch, height, width)
     xv_min = (xv.float()*2 - width)/width
@@ -98,9 +97,7 @@ class SimpleDecoding(nn.Module):
         x = torch.cat([x_c0_tmp, x], dim=1)
         x = self.conv2_2(x)
         
-        return x #self.conv1_1(x)
-
-
+        return x
 
 class FuseDecoding(nn.Module):
     def __init__(self, c4_dims=256, factor=2):
